@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: validation.demo
+defaultPackage: funk.shane
 ---
 testFramework: junit
 sourceLanguage: java
