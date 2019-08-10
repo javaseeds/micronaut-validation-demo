@@ -1,4 +1,4 @@
-package validation.demo;
+package funk.shane;
 
 import io.micronaut.runtime.Micronaut;
 
