@@ -63,6 +63,10 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-validation</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.9</version>
@@ -72,10 +76,10 @@
       <artifactId>commons-text</artifactId>
       <version>1.7</version>
     </dependency>
-    <!-- <dependency>
+    <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-validation</artifactId>
-    </dependency> -->
+    </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -96,6 +100,11 @@
       <groupId>io.micronaut.test</groupId>
       <artifactId>micronaut-test-junit5</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.8</version>
     </dependency>
   </dependencies>
   <build>

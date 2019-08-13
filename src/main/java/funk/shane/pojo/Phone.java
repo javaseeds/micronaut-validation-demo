@@ -1,15 +1,23 @@
 package funk.shane.pojo;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+@Getter @Setter
+@Slf4j
 public class Phone {
+    private static final String US_FORMAT = "+%d (%03d) %03d-%04d %s";
+
     @Min(1)
     private int countryCode;
 
@@ -28,51 +36,11 @@ public class Phone {
 
     public Phone() { /* empty constructor */ }
 
-    public void generateFormatted() {
-        this.usformatted = String.format("+%d (%03d) %03d-%04d %s", this.countryCode, this.areaCode, 
-          this.prefix, this.suffix, buildExtension(this.extension));
-    }
-
-    public int getPrefix() {
-    	return this.prefix;
-    }
-    public void setPrefix(int prefix) {
-    	this.prefix = prefix;
-    }
-
-    public int getSuffix() {
-    	return this.suffix;
-    }
-    public void setSuffix(int suffix) {
-    	this.suffix = suffix;
-    }
-
-    public int getExtension() {
-    	return this.extension;
-    }
-    public void setExtension(int extension) {
-    	this.extension = extension;
-    }
-
-    public String getFormatted() {
-    	return this.usformatted;
-    }
-    public void setFormatted(String formatted) {
-    	this.usformatted = formatted;
-    }
-
-    public int getAreaCode() {
-    	return this.areaCode;
-    }
-    public void setAreaCode(int areaCode) {
-    	this.areaCode = areaCode;
-    }
-
-    public int getCountryCode() {
-    	return this.countryCode;
-    }
-    public void setCountryCode(int countryCode) {
-    	this.countryCode = countryCode;
+    public String generateFormatted(@NotBlank(message = "Phone cannot be blank") 
+                                    final Phone phone) {
+        log.debug("Phone object: {}", phone);                                
+        return String.format(US_FORMAT, phone.getCountryCode(), phone.getAreaCode(), phone.getPrefix(), 
+          phone.getSuffix(), buildExtension(phone.getExtension()));
     }
 
     private static String buildExtension(final Integer extension) {

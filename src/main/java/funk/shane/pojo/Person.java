@@ -10,6 +10,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class Person {
     @NotBlank(message = "Person requires an address")
     private Address address;
@@ -22,21 +26,6 @@ public class Person {
     private LocalDate birthDate;
 
     public Person() { /* empty constructor */ }
-
-    public Address getAddress() {
-    	return this.address;
-    }
-
-    public void setAddress(Address address) {
-    	this.address = address;
-    }
-
-    public Phone getPhone() {
-    	return this.phone;
-    }
-    public void setPhone(Phone phone) {
-    	this.phone = phone;
-    }
 
     @Override
     public String toString() {
