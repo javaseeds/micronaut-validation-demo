@@ -1,3 +1,8 @@
 micronaut:
   application:
     name: validation-demo
+jackson:
+  serialization:
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false
