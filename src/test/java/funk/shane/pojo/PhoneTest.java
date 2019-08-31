@@ -1,7 +1,5 @@
 package funk.shane.pojo;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
