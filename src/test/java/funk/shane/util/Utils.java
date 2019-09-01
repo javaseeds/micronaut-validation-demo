@@ -1,7 +1,9 @@
 package funk.shane.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
@@ -10,7 +12,7 @@ import javax.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import org.apache.commons.io.IOUtils;
+// import org.apache.commons.io.IOUtils;
 
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
@@ -30,7 +32,12 @@ public class Utils {
     String resource = null;
     if (is.isPresent()) {
       try {
-        resource = IOUtils.toString(is.get(), StandardCharsets.UTF_8);
+        // USING Apache IOUtils to write file content to String (disadvantage: extra dependency)
+        //resource = IOUtils.toString(is.get(), StandardCharsets.UTF_8);
+
+        // USING Micronaut, no extra dependency, but more JDK boilerplate (probably what's under the Apache dep hood)
+        resource = io.micronaut.core.io.IOUtils.readText(
+          new BufferedReader(new InputStreamReader(is.get(), StandardCharsets.UTF_8)));
       } catch (IOException e) {
         log.error("bad juju: {}", e.getMessage(), e);
       }
