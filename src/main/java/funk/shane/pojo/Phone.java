@@ -18,20 +18,25 @@ import lombok.extern.slf4j.Slf4j;
 public class Phone {
     private static final String US_FORMAT = "+%d (%03d) %03d-%04d %s";
 
-    @Min(1)
+    @Min(value = 1, message = "Country Code must be non-negative value")
     private int countryCode;
 
-    @Min(201) @Max(999)
+    @Min(value = 201, message = "Area Code must be greater than 200")
+    @Max(value = 999, message = "Area Code must be less than 3 digits")
     private int areaCode;
 
-    @Min(101) @Max(999)
+    @Min(value = 101, message = "Prefix must be greater than 100")
+    @Max(value = 999, message = "Prefix must be less than 4 digits")
     private int prefix;
 
-    @Max(9999)
+    @Min(value = 0, message = "Suffix must be a positive number")
+    @Max(value = 9999, message = "Suffix must be less than 5 digits")
     private int suffix;
 
     private Integer extension;
 
+    /* Note: in practice, this format would be in a Locale supported way, but for this demo app, 
+       just going to use USA for now */
     private String usformatted;
 
     public Phone() { /* empty constructor */ }
