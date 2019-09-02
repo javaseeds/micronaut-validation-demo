@@ -9,12 +9,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import io.micronaut.core.annotation.Introspected;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter @Setter
 @Slf4j
+@Introspected
 public class Phone {
     private static final String US_FORMAT = "+%d (%03d) %03d-%04d %s";
 
