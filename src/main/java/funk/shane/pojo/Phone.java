@@ -4,17 +4,16 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import io.micronaut.core.annotation.Introspected;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-@Getter @Setter
+@Getter @Setter @EqualsAndHashCode
 @Slf4j
 @Introspected
 public class Phone {
@@ -35,7 +34,7 @@ public class Phone {
     @Max(value = 9999, message = "Suffix must be less than 5 digits")
     private int suffix;
 
-    private Integer extension;
+    private int extension;
 
     /* Note: in practice, this format would be in a Locale supported way, but for this demo app, 
        just going to use USA for now */
@@ -54,18 +53,9 @@ public class Phone {
         return extension == null ? "" : "x" + extension;
     }    
 
+    /* So I know that Lombok has support for toString, I just prefer this style */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
-    }
-
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(19, 37, this);
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
     }
 }
