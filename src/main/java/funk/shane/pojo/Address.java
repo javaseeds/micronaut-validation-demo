@@ -1,45 +1,50 @@
 package funk.shane.pojo;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import io.micronaut.core.annotation.Introspected;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter @Setter @EqualsAndHashCode
+@Introspected
 public class Address {
     @NotBlank(message = "Street Line 1 cannot be blank")
-    private String street_line1;
+    private String streetLine1;
 
-    private String street_line2;
+    private String streetLine2;
     
-    private String street_line3;
+    private String streetLine3;
     
     @NotBlank(message = "City cannot be blank")
     private String city;
     
-    private String state_full;
-    
-    private String state_code;
-    
+    @NotBlank(message = "State Code cannot be blank")
+    @Size(min = 2, max = 2, message = "State Code can only be two (2) character long")
+    private String stateCode;
+
+    @Pattern(regexp = "^\\d{5}(-\\d{4})?$", message = "Postal Code is US 5 digit or 5+4 format")
     @NotBlank(message = "Postal Code cannot be blank")
-    private String postal_code;
+    private String postalCode;
     
     private String country;
 
     public Address() { /* empty constructor */ }
 
-    public Address(String street_line1, String street_line2, String street_line3, String city, String state_full, 
-                   String state_code, String postal_code, String country) {
-        this.street_line1 = street_line1;
-        this.street_line2 = street_line2;
-        this.street_line3 = street_line3;
+    public Address(String streetLine1, String streetLine2, String streetLine3, String city, 
+                   String stateCode, String postalCode, String country) {
+        this.streetLine1 = streetLine1;
+        this.streetLine2 = streetLine2;
+        this.streetLine3 = streetLine3;
         this.city = city;
-        this.state_full = state_full;
-        this.state_code = state_code;
-        this.postal_code = postal_code;
+        this.stateCode = stateCode;
+        this.postalCode = postalCode;
         this.country = country;
     }
     

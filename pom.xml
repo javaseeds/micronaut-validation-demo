@@ -170,9 +170,9 @@
             </compilerArgs>
             <annotationProcessorPaths>
               <path>
-                  <groupId>org.projectlombok</groupId>
-                  <artifactId>lombok</artifactId>
-                  <version>1.18.8</version>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.8</version>
               </path>
               <path>
                 <groupId>io.micronaut</groupId>

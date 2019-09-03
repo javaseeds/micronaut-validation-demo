@@ -8,11 +8,13 @@ import javax.validation.constraints.Past;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import io.micronaut.core.annotation.Introspected;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter @EqualsAndHashCode
+@Introspected
 public class Person {
     @NotBlank(message = "Person requires an address")
     private Address address;

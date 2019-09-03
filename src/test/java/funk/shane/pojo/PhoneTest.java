@@ -29,7 +29,7 @@ public class PhoneTest {
      */
     @Test
     void testHappyPath() {
-        final Phone testPhone = getTestPhone();
+        final Phone testPhone = getTestPhone("phone-1.json");
         assertNotNull(testPhone);
 
         log.info("testPhone: {}", testPhone);
@@ -40,7 +40,7 @@ public class PhoneTest {
 
     @Test
     void testCountryCodeInvalid() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setCountryCode(-1);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -52,7 +52,7 @@ public class PhoneTest {
 
     @Test
     void testAreaCodeTooSmall() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setAreaCode(200);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -64,7 +64,7 @@ public class PhoneTest {
 
     @Test
     void testAreaCodeTooLarge() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setAreaCode(1000);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -76,7 +76,7 @@ public class PhoneTest {
 
     @Test
     void testPrefixTooSmall() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setPrefix(100);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -88,7 +88,7 @@ public class PhoneTest {
 
     @Test
     void testPrefixTooLarge() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setPrefix(1000);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -100,7 +100,7 @@ public class PhoneTest {
 
     @Test
     void testSuffixTooSmall() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setSuffix(-1);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -112,7 +112,7 @@ public class PhoneTest {
 
     @Test
     void testSuffixTooLarge() {
-        final Phone badPhone = getTestPhone();
+        final Phone badPhone = getTestPhone("phone-1.json");
         badPhone.setSuffix(10000);
 
         final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
@@ -122,8 +122,20 @@ public class PhoneTest {
         assertEquals("Suffix must be less than 5 digits", phoneViolation.getMessage());
     }
 
-   /* Generate a test object - change as needed */
-    private static Phone getTestPhone() {
-        return Utils.getClassFromJsonResource(Phone.class, "phone-1.json");
+    @Test
+    void testBunchesOfValidations() {
+        final Phone badPhone = getTestPhone("phone-1.json");
+        badPhone.setCountryCode(-1);
+        badPhone.setAreaCode(1);
+        badPhone.setPrefix(99999);
+        badPhone.setSuffix(99999);
+
+        final Set<ConstraintViolation<Phone>> violations = validator.validate(badPhone);
+        assertEquals(4, violations.size());
+    }
+
+    /* Generate a test object - change as needed */
+    private static Phone getTestPhone(final String jsonFile) {
+        return Utils.getClassFromJsonResource(Phone.class, jsonFile);
     }
 }
