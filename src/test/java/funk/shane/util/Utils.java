@@ -12,16 +12,13 @@ import javax.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-// import org.apache.commons.io.IOUtils;
-
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
+import lombok.extern.slf4j.Slf4j;
 
 @Singleton
+@Slf4j
 public class Utils {
-  private static final Logger log = LoggerFactory.getLogger(Utils.class);
   private static final ObjectMapper mapper = 
     new ObjectMapper().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 

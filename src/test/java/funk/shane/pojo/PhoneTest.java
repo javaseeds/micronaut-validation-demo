@@ -9,16 +9,15 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import funk.shane.util.Utils;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;
+import lombok.extern.slf4j.Slf4j;
 
 @MicronautTest
+@Slf4j
 public class PhoneTest {
-    private static final Logger log = LoggerFactory.getLogger(PhoneTest.class);
 
     @Inject
     Validator validator;
