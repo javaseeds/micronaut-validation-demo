@@ -16,6 +16,9 @@ import lombok.Setter;
 @Getter @Setter @EqualsAndHashCode
 @Introspected
 public class Person {
+    @NotBlank(message = "Person requires a name")
+    private Name name;
+
     @NotBlank(message = "Person requires an address")
     private Address address;
 
