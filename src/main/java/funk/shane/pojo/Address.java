@@ -29,7 +29,7 @@ public class Address {
     @Size(min = 2, max = 2, message = "State Code can only be two (2) character long")
     private String stateCode;
 
-    @Pattern(regexp = "^\\d{5}(-\\d{4})?$", message = "Postal Code is US 5 digit or 5+4 format")
+    @Pattern(regexp = "^\\d{5}(-\\d{4})?$", message = "Postal Code in US is 5 digit or 5+4 format")
     @NotBlank(message = "Postal Code cannot be blank")
     private String postalCode;
     

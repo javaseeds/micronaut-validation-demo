@@ -3,7 +3,9 @@ package funk.shane.pojo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -116,8 +118,16 @@ public class AddressTest {
         final Set<ConstraintViolation<Address>> violations = validator.validate(badAddy);
         assertEquals(2, violations.size());
 
-        // TODO work out multiple assertions of Validation messages
-    }
+        final List<String> checkStrings = 
+            List.of("State Code can only be two (2) character long", "State Code cannot be blank");
+
+        List<String> validationStrings = violations.stream()
+            .map(v -> v.getMessage())
+            .sorted()
+            .collect(Collectors.toList());
+        
+        assertEquals(checkStrings, validationStrings);    
+   }
 
     @Test
     void testNullStateCode() {
@@ -129,6 +139,59 @@ public class AddressTest {
 
         ConstraintViolation<Address> addyViolation = violations.iterator().next();
         assertEquals("State Code cannot be blank", addyViolation.getMessage());    
+    }
+
+    @Test
+    void testNullPostalCode() {
+        final Address badAddy = getTestAddress("address-1.json");
+        badAddy.setPostalCode(null);
+
+        final Set<ConstraintViolation<Address>> violations = validator.validate(badAddy);
+        assertEquals(1, violations.size());
+
+
+        ConstraintViolation<Address> addyViolation = violations.iterator().next();
+        assertEquals("Postal Code cannot be blank", addyViolation.getMessage());    
+    }
+
+    @Test
+    void testBlankPostalCode() {
+        final Address badAddy = getTestAddress("address-1.json");
+        badAddy.setPostalCode("");
+
+        final Set<ConstraintViolation<Address>> violations = validator.validate(badAddy);
+        assertEquals(2, violations.size());
+
+        final List<String> checkStrings =
+            List.of("Postal Code cannot be blank", "Postal Code in US is 5 digit or 5+4 format");
+
+        List<String> validationStrings = violations.stream()
+            .map(v -> v.getMessage())
+            .sorted()
+            .collect(Collectors.toList());
+    
+        assertEquals(checkStrings, validationStrings);    
+    }
+
+    @Test
+    void testPostalCodePlus4HappyPath() {
+        final Address plus4Addy = getTestAddress("address-1.json");
+        plus4Addy.setPostalCode("12345-6789");
+
+        final Set<ConstraintViolation<Address>> violations = validator.validate(plus4Addy);
+        assertEquals(0, violations.size());
+    }
+
+    @Test
+    void testPostCodePlus4Not4Digits() {
+        final Address badAddy = getTestAddress("address-1.json");
+        badAddy.setPostalCode("12345-67");
+
+        final Set<ConstraintViolation<Address>> violations = validator.validate(badAddy);
+        assertEquals(1, violations.size());
+
+        ConstraintViolation<Address> addyViolation = violations.iterator().next();
+        assertEquals("Postal Code in US is 5 digit or 5+4 format", addyViolation.getMessage());    
     }
 
     /* Generate a test object - change as needed */
