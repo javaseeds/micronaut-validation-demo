@@ -3,6 +3,7 @@ package funk.shane.pojo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -191,6 +192,18 @@ public class AddressTest {
 
         ConstraintViolation<Address> addyViolation = violations.iterator().next();
         assertEquals("Postal Code in US is 5 digit or 5+4 format", addyViolation.getMessage());    
+    }
+
+    @Test
+    void testInvalidLeaseExpiration() {
+        final Address badAddy = getTestAddress("address-1.json");
+        badAddy.setEndOfLease(LocalDate.now().minusMonths(10));
+
+        final Set<ConstraintViolation<Address>> violations = validator.validate(badAddy);
+        assertEquals(1, violations.size());
+
+        ConstraintViolation<Address> addyViolation = violations.iterator().next();
+        assertEquals("End of lease cannot be in the past", addyViolation.getMessage());    
     }
 
     /* Generate a test object - change as needed */

@@ -1,8 +1,17 @@
 package funk.shane.pojo;
 
+import java.time.LocalDate;
+
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -35,19 +44,18 @@ public class Address {
     
     private String country;
 
+    enum AddressType {
+        LEASED,
+        OWNED
+    }
+
+    @FutureOrPresent(message = "End of lease cannot be in the past")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate endOfLease;
+    
     public Address() { /* empty constructor */ }
 
-    public Address(String streetLine1, String streetLine2, String streetLine3, String city, 
-                   String stateCode, String postalCode, String country) {
-        this.streetLine1 = streetLine1;
-        this.streetLine2 = streetLine2;
-        this.streetLine3 = streetLine3;
-        this.city = city;
-        this.stateCode = stateCode;
-        this.postalCode = postalCode;
-        this.country = country;
-    }
-    
     /* So I know that Lombok has support for toString, I just prefer this style */
     @Override
     public String toString() {

@@ -3,5 +3,6 @@
     "streetLine2": "Suite ABC",
     "city": "Anytown",
     "stateCode": "MO",
-    "postalCode": "99999"
+    "postalCode": "99999",
+    "endOfLease": "2030-12-31"
 }

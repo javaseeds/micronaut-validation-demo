@@ -3,7 +3,13 @@ package funk.shane.pojo;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -16,17 +22,19 @@ import lombok.Setter;
 @Getter @Setter @EqualsAndHashCode
 @Introspected
 public class Person {
-    @NotBlank(message = "Person requires a name")
+    @NotNull(message = "Person requires a name")
     private Name name;
 
-    @NotBlank(message = "Person requires an address")
+    @NotNull(message = "Person requires an address")
     private Address address;
 
-    @NotBlank(message = "Person requires a phone")
+    @NotNull(message = "Person requires a phone number")
     private Phone phone;
 
-    @NotBlank(message = "Person requires a birthday")
+    @NotNull(message = "Person requires a birth date")
     @Past(message = "Person's birthday cannot be in present or the future")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate birthDate;
 
     public Person() { /* empty constructor */ }
