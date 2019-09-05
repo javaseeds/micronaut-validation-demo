@@ -2,7 +2,6 @@ package funk.shane.pojo;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

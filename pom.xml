@@ -6,7 +6,7 @@
   <version>1.0.0</version>
 
   <properties>
-    <micronaut.version>1.2.0</micronaut.version>
+    <micronaut.version>1.2.1</micronaut.version>
     <jdk.version>11</jdk.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <exec.mainClass>validation.demo.Application</exec.mainClass>
@@ -68,11 +68,6 @@
       <version>3.9</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-text</artifactId>
-      <version>1.7</version>
-    </dependency>
-    <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.6</version>
@@ -93,6 +88,7 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>3.13.2</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -216,6 +212,11 @@
               </configuration>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.openclover</groupId>
+          <artifactId>clover-maven-plugin</artifactId>
+          <version>4.3.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
