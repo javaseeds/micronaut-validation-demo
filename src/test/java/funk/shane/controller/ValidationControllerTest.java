@@ -1,16 +1,25 @@
 package funk.shane.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import funk.shane.pojo.Person;
+import funk.shane.util.Utils;
 import io.micronaut.context.ApplicationContext;
+import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.runtime.server.EmbeddedServer;
+import io.micronaut.test.annotation.MicronautTest;
+import lombok.extern.slf4j.Slf4j;
 
+@MicronautTest
+@Disabled
+@Slf4j
 public class ValidationControllerTest {
     private static EmbeddedServer server;
     private static HttpClient client;
@@ -35,9 +44,17 @@ public class ValidationControllerTest {
 
     @Test
     public void testHappyPath() {
-        String body = client.toBlocking().retrieve("/api/v1/valid");
+        final Person person = Utils.getClassFromJsonResource(Person.class, "person-1.json");
+        log.info("test person: {}", person);
+
+        HttpRequest<Person> request;
+
+        String body = client.toBlocking()
+          .retrieve("/api/v1/valid");
         assertNotNull(body);
 
-        assertEquals("", body);
+        // using AssertJ here
+        assertThat(body).startsWith("Person ");
+        assertThat(body).endsWith(" was vaild");
     }
 }
