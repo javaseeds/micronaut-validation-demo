@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import funk.shane.pojo.Person;
@@ -17,8 +16,11 @@ import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.annotation.MicronautTest;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Important to note the needed build dependencies
+ * https://micronaut-projects.github.io/micronaut-test/latest/guide/index.html#junit5
+ */
 @MicronautTest
-@Disabled
 @Slf4j
 public class ValidationControllerTest {
     private static EmbeddedServer server;
@@ -47,10 +49,9 @@ public class ValidationControllerTest {
         final Person person = Utils.getClassFromJsonResource(Person.class, "person-1.json");
         log.info("test person: {}", person);
 
-        HttpRequest<Person> request;
+        HttpRequest<Person> request = HttpRequest.POST("/api/v1/valid", person);
 
-        String body = client.toBlocking()
-          .retrieve("/api/v1/valid");
+        String body = client.toBlocking().retrieve(request);
         assertNotNull(body);
 
         // using AssertJ here
