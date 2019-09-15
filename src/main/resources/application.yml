@@ -2,7 +2,7 @@ micronaut:
   application:
     name: validation-demo
   server:
-    port: 60001  
+    port: -1  
 jackson:
   serialization:
     writeDatesAsTimestamps: false
