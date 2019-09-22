@@ -3,6 +3,11 @@ micronaut:
     name: validation-demo
   server:
     port: 29999  
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+    details-visible: ANONYMOUS
 jackson:
   serialization:
     writeDatesAsTimestamps: false

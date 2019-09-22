@@ -1,6 +1,7 @@
 package funk.shane.controller;
 
 import funk.shane.pojo.Person;
+import funk.shane.util.Utils;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -16,5 +17,10 @@ public class ValidationController {
         log.info("inbound person: {}", person);
 
         return String.format("Person [%s] was vaild", person);
+    }
+
+    @Get(uri = "/v1/get-a-person", produces = {MediaType.APPLICATION_JSON})
+    public Person getPerson() {
+        return Utils.getClassFromJsonResource(Person.class, "person-1.json");
     }
 }
