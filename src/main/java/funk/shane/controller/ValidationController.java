@@ -13,20 +13,25 @@
 */
 package funk.shane.controller;
 
+import javax.validation.Valid;
+
 import funk.shane.pojo.Person;
 import funk.shane.util.Utils;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.validation.Validated;
 import lombok.extern.slf4j.Slf4j;
 
+@Validated
 @Controller("/api")
 @Slf4j
 public class ValidationController {
     
-    @Get(uri = "/v1/valid", produces = {MediaType.TEXT_PLAIN})
-    public String validDemo(@Body Person person) {
+    @Post(uri = "/v1/valid", produces = {MediaType.TEXT_PLAIN})
+    public String validDemo(@Valid @Body Person person) {
         log.info("inbound person: {}", person);
 
         return String.format("Person [%s] was vaild", person);
