@@ -12,7 +12,7 @@
  WHETHER  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-package funk.shane.pojo;
+package funk.shane.valid.pojo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -25,7 +25,7 @@ import javax.validation.ConstraintViolation;
 
 import org.junit.jupiter.api.Test;
 
-import funk.shane.util.Utils;
+import funk.shane.valid.util.Utils;
 import io.micronaut.test.annotation.MicronautTest;
 import io.micronaut.validation.validator.Validator;
 import lombok.extern.slf4j.Slf4j;

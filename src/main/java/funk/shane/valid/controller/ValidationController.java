@@ -11,12 +11,12 @@
  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,  
  WHETHER  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package funk.shane.controller;
+package funk.shane.valid.controller;
 
 import javax.validation.Valid;
 
-import funk.shane.pojo.Person;
-import funk.shane.util.Utils;
+import funk.shane.valid.pojo.Person;
+import funk.shane.valid.util.Utils;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
