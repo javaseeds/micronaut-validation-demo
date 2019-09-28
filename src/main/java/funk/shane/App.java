@@ -14,9 +14,25 @@
 package funk.shane;
 
 import io.micronaut.runtime.Micronaut;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 
+@OpenAPIDefinition(
+    info = @Info(
+        title = "Micronaut Validation Demo",
+        version = "1.0.0",
+        description = "My attempt to demonstrate Testing Validation on Micronaut Framework",
+        license = @License(name = "MIT", url = "https://opensource.org/licenses/MIT"),
+        contact = @Contact(
+            url = "https://javaseeds.github.io/",
+            name = "Shane Funk",
+            email = "michaelshanefunk@gmail.com"            
+        )
+    )
+)
 public class App {
-
     public static void main(String[] args) {
         Micronaut.run(App.class);
     }

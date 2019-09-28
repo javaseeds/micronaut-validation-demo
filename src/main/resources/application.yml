@@ -11,7 +11,12 @@
 
 micronaut:
   application:
-    name: validation-demo
+    name: micronaut-validation-demo
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**  
   server:
     port: 29999  
 endpoints:

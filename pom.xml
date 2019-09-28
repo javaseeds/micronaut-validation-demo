@@ -16,7 +16,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>micronaut-validation.demo</groupId>
+  <groupId>micronaut-validation-demo</groupId>
   <artifactId>micronaut-validation-demo</artifactId>
   <version>1.0.0</version>
 
@@ -80,6 +80,16 @@
     <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-management</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.configuration</groupId>
+      <artifactId>micronaut-openapi</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger.core.v3</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>2.0.9</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -195,6 +205,11 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.8</version>
+              </path>
+              <path>
+                <groupId>io.micronaut.configuration</groupId>
+                <artifactId>micronaut-openapi</artifactId>
+                <version>1.2.0</version>
               </path>
               <path>
                 <groupId>io.micronaut</groupId>
