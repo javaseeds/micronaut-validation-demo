@@ -13,13 +13,21 @@
 */
 package funk.shane.valid.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 import funk.shane.valid.pojo.Person;
 import funk.shane.valid.util.Utils;
+import io.micronaut.http.HttpRequest;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Error;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +45,25 @@ public class ValidationController {
 
     @Get(uri = "/v1/get-a-person", produces = {MediaType.APPLICATION_JSON})
     public Person getPerson() {
-        return Utils.getClassFromJsonResource(Person.class, "person-1.json");
+        final Person person = Utils.getClassFromJsonResource(Person.class, "person-1.json");
+        log.info("Returning person: {}", person);
+        return person;
+    }
+
+    /**
+     * validationError - using Micronaut to provide clean information about why a Person object was invalid
+     * https://docs.micronaut.io/latest/guide/index.html#_local_error_handling
+     * @param httpRequest
+     * @param violationException
+     * @return Bad Request Status code with list of invalid data
+     */
+    @Error
+    public HttpResponse<String> validationError(HttpRequest<?> httpRequest, ConstraintViolationException violationException) {
+        List<String> validationStrings = violationException.getConstraintViolations().stream()
+        .map(v -> v.getMessage())
+        .sorted()
+        .collect(Collectors.toList());
+
+        return HttpResponse.<String>status(HttpStatus.BAD_REQUEST, "Invalid data was entered").body(validationStrings.toString());
     }
 }
