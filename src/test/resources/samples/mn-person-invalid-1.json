@@ -1,0 +1,23 @@
+{
+    "address": {
+        "city": "Anytown",
+        "postalCode": "99999",
+        "stateCode": "MO",
+        "streetLine1": "123 Main St",
+        "streetLine2": "Suite ABC"
+    },
+    "birthDate": "1945-05-15",
+    "name": {
+        "firstName": "",
+        "lastName": "",
+        "suffix": "III"
+    },
+    "phone": {
+        "areaCode": 816,
+        "countryCode": 1,
+        "extension": 0,
+        "prefix": 555,
+        "suffix": 1212
+    }
+}
+
