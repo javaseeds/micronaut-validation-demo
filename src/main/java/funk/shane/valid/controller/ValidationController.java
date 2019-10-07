@@ -51,19 +51,19 @@ public class ValidationController {
     }
 
     /**
-     * validationError - using Micronaut to provide clean information about why a Person object was invalid
+     * validationErrorHandler - using Micronaut to provide clean information about why a Person object was invalid
      * https://docs.micronaut.io/latest/guide/index.html#_local_error_handling
      * @param httpRequest
      * @param violationException
      * @return Bad Request Status code with list of invalid data
      */
     @Error
-    public HttpResponse<String> validationError(HttpRequest<?> httpRequest, ConstraintViolationException violationException) {
+    public HttpResponse<String> validationErrorHandler(HttpRequest<?> httpRequest, ConstraintViolationException violationException) {
         List<String> validationStrings = violationException.getConstraintViolations().stream()
         .map(v -> v.getMessage())
         .sorted()
         .collect(Collectors.toList());
 
-        return HttpResponse.<String>status(HttpStatus.BAD_REQUEST, "Invalid data was entered").body(validationStrings.toString());
+        return HttpResponse.<String>status(HttpStatus.BAD_REQUEST, "Invalid data was POSTed").body(validationStrings.toString());
     }
 }
