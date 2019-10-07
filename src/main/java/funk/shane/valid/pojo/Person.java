@@ -35,6 +35,8 @@ import lombok.Setter;
 @Getter @Setter @EqualsAndHashCode
 @Introspected
 public class Person {
+    private String id;
+
     @NotNull(message = "Person requires a name")
     @Valid
     private Name name;

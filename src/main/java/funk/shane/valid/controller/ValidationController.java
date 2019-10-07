@@ -29,6 +29,7 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Error;
 import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.PathVariable;
 import io.micronaut.http.annotation.Post;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +37,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ValidationController {
     
+    /**
+     * validDemo - REST POST call to "write" a person to a data source (not provided in this demo app)
+     * Only returns a String with either an affirmative valid message or explains why the input was incorrect
+     * 
+     * @param person
+     * @return
+     */
     @Post(uri = "/v1/valid", produces = {MediaType.TEXT_PLAIN})
     public String validDemo(@Valid @Body Person person) {
         log.info("inbound person: {}", person);
@@ -43,8 +51,14 @@ public class ValidationController {
         return String.format("Person [%s] was valid", person);
     }
 
-    @Get(uri = "/v1/get-a-person", produces = {MediaType.APPLICATION_JSON})
-    public Person getPerson() {
+    /**
+     * Retrieve a person - even though there's an id sent in, this trivial example doesn't pull from a data source 
+     * in this version
+     * @return
+     */
+    @Get(uri = "/v1/get-a-person/{id}", produces = {MediaType.APPLICATION_JSON})
+    public Person getPerson(@PathVariable String id) {
+        log.info("Get Person with id: [{}]", id);
         final Person person = Utils.getClassFromJsonResource(Person.class, "person-1.json");
         log.info("Returning person: {}", person);
         return person;
@@ -59,10 +73,12 @@ public class ValidationController {
      */
     @Error
     public HttpResponse<String> validationErrorHandler(HttpRequest<?> httpRequest, ConstraintViolationException violationException) {
-        List<String> validationStrings = violationException.getConstraintViolations().stream()
+        final List<String> validationStrings = violationException.getConstraintViolations().stream()
         .map(v -> v.getMessage())
         .sorted()
         .collect(Collectors.toList());
+
+        log.error("Inbound REST call tripped validation error(s) [{}]", validationStrings.toString());
 
         return HttpResponse.<String>status(HttpStatus.BAD_REQUEST, "Invalid data was POSTed").body(validationStrings.toString());
     }
