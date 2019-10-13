@@ -48,7 +48,7 @@ public class ValidationController {
     public String validDemo(@Valid @Body Person person) {
         log.info("inbound person: {}", person);
 
-        return String.format("Person [%s] was valid", person);
+        return String.format("Micronaut Person [%s] was valid", person);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ValidationController {
     public Person getPerson(@PathVariable String id) {
         log.info("Get Person with id: [{}]", id);
         final Person person = Utils.getClassFromJsonResource(Person.class, "person-1.json");
-        log.info("Returning person: {}", person);
+        log.info("Returning Micronaut person: {}", person);
         return person;
     }
 
