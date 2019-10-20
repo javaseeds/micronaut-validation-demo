@@ -25,6 +25,7 @@ import javax.inject.Singleton;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import io.micronaut.core.io.IOUtils;
 import io.micronaut.core.io.ResourceResolver;
 import io.micronaut.core.io.scan.ClassPathResourceLoader;
 import lombok.extern.slf4j.Slf4j;
@@ -47,7 +48,7 @@ public class Utils {
         //resource = IOUtils.toString(is.get(), StandardCharsets.UTF_8);
 
         // USING Micronaut, no extra dependency, but more JDK boilerplate (probably what's under the Apache dep hood)
-        resource = io.micronaut.core.io.IOUtils.readText(
+        resource = IOUtils.readText(
           new BufferedReader(new InputStreamReader(is.get(), StandardCharsets.UTF_8)));
       } catch (IOException e) {
         log.error("bad juju: {}", e.getMessage(), e);
