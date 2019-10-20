@@ -38,8 +38,8 @@ public class Utils {
 
   public static String readResource(final String fileName) {
     log.info("fileName: {}", fileName);
-    ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
-    Optional<InputStream> is = loader.getResourceAsStream("classpath:funk/shane/pojo/" + fileName);
+    final ClassPathResourceLoader loader = new ResourceResolver().getLoader(ClassPathResourceLoader.class).get();
+    final Optional<InputStream> is = loader.getResourceAsStream("classpath:funk/shane/pojo/" + fileName);
 
     String resource = null;
     if (is.isPresent()) {
