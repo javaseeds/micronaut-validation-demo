@@ -1,6 +1,6 @@
 # Micronaut Validation Demo
 
-This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.2.0 using the new Validation framework it now has.
+This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.2.6 using the new Validation framework it now has.
 <https://docs.micronaut.io/latest/guide/index.html#beanValidation>
 
 It will not be using Hibernate's Validation framework.
