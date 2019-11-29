@@ -18,6 +18,8 @@ Taking a look at these rules (perhaps more)
 * After
 * Pattern
 
+Review the testing output in the /test/resources/test-output-1.txt file
+
 > Copyright 2019 Michael Shane Funk - Javaseeds Consulting
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
