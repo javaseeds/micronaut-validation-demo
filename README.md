@@ -1,6 +1,6 @@
 # Micronaut Validation Demo
 
-This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.3.2 using the new Validation framework provided by Micronaut.
+This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.3.3 using the new Validation framework provided by Micronaut.
 <https://docs.micronaut.io/latest/guide/index.html#beanValidation>
 
 It will **not** be using Hibernate's Validation framework.
@@ -20,7 +20,7 @@ Taking a look at these rules (perhaps more)
 
 Review the testing output in the /test/resources/test-output-1.txt file
 
-> Copyright 2019 Michael Shane Funk - Javaseeds Consulting
+> Copyright 2019-2020 Michael Shane Funk - Javaseeds Consulting
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 > associated documentation files (the "Software"), to deal in
