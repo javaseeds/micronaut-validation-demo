@@ -74,9 +74,9 @@ public class ValidationController {
     @Error
     public HttpResponse<String> validationErrorHandler(HttpRequest<?> httpRequest, ConstraintViolationException violationException) {
         final List<String> validationStrings = violationException.getConstraintViolations().stream()
-        .map(v -> v.getMessage())
-        .sorted()
-        .collect(Collectors.toList());
+            .map(v -> v.getMessage())
+            .sorted()
+            .collect(Collectors.toList());
 
         log.error("Inbound REST call tripped validation error(s) [{}]", validationStrings.toString());
 
