@@ -1,6 +1,6 @@
 # Micronaut Validation Demo
 
-This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.3.4 using the new Validation framework provided by Micronaut.
+This demo will show how to build out and fully unit test simple code build with in Micronaut v.1.3.6 using the new Validation framework provided by Micronaut.
 <https://docs.micronaut.io/latest/guide/index.html#beanValidation>
 
 It will **not** be using Hibernate's Validation framework.
@@ -9,14 +9,14 @@ Many of the standard validation rules will be shown including in the unit test w
 
 Taking a look at these rules (perhaps more)
 
-* NotNull
-* Blank
-* Min
-* Max
-* Size
-* Before
-* After
-* Pattern
+- NotNull
+- Blank
+- Min
+- Max
+- Size
+- Before
+- After
+- Pattern
 
 Review the testing output in the /test/resources/test-output-1.txt file
 
@@ -35,5 +35,5 @@ Review the testing output in the /test/resources/test-output-1.txt file
 > LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
 > FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 > LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> WHETHER  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+> WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 > SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
