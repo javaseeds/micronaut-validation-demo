@@ -21,8 +21,8 @@ micronaut:
     port: 29999  
 endpoints:
   health:
-    enabled: true
-    sensitive: false
+    disk-space:
+      enabled: true     
     details-visible: ANONYMOUS
 jackson:
   serialization:
